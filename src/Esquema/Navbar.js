@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -9,9 +10,17 @@ function Navbar() {
     };
 
     const toggleDropdown = (e) => {
-        const rect = e.target.getBoundingClientRect();
-        setDropdownPosition({ top: rect.bottom + 4, left: rect.left });
-        setIsDropdownOpen(!isDropdownOpen);
+        e.preventDefault();
+        setIsDropdownOpen(true);
+        const buttonPosition = e.target.getBoundingClientRect();
+        setDropdownPosition({
+            top: buttonPosition.bottom + window.pageYOffset,
+            left: buttonPosition.left + window.pageXOffset
+        });
+    };
+
+    const closeDropdown = () => {
+        setIsDropdownOpen(false);
     };
 
     return (
@@ -48,34 +57,38 @@ function Navbar() {
                     </div>
                 )}
 
-
                 <div className="hidden md:flex md:w-auto">
                     <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-black md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-black dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <li>
                             <a href="#" className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Inicio</a>
                         </li>
-                        <li>
-                            <button
-                                onClick={(e) => toggleDropdown(e)}
-                                id="dropdownNavbarLink"
-                                className="flex items-center justify-between w-full py-2 px-3 text-white hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                        <li onMouseLeave={closeDropdown}>
+                            <div
+                                onMouseEnter={toggleDropdown}
+                                onMouseLeave={closeDropdown}
                             >
-                                Tienda
-                                <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
-                                </svg>
-                            </button>
-                            {isDropdownOpen && (
-                                <div className="absolute z-40 top-[${dropdownPosition.top}px] left-[${dropdownPosition.left}px] w-full md:w-auto font-normal bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
-                                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Overview</a>
-                                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My downloads</a>
-                                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Billing</a>
-                                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rewards</a>
-                                </div>
-                            )}
+                                <button
+                                    id="dropdownNavbarLink"
+                                    className="flex items-center justify-between w-full py-2 px-3 text-white hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                                >
+                                    Tienda
+                                    <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+                                {isDropdownOpen && (
+                                    <div
+                                        className="absolute z-40 top-[${dropdownPosition.top}px] left-[${dropdownPosition.left}px] w-full md:w-auto font-normal bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                                    >
+                                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Overview</a>
+                                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My downloads</a>
+                                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Billing</a>
+                                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rewards</a>
+                                    </div>
+                                )}
+                            </div>
                         </li>
-
                         <li>
                             <a href="#" className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Servicios</a>
                         </li>
