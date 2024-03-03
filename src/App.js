@@ -1,13 +1,8 @@
 import React from 'react';
-import Navbar from './Esquema/Navbar';
-import Carousel from './Esquema/Carousel';
-
+import Rutas from './routes/Rutas.js';
 function App() {
   return (
-    <div>
-      <Navbar/>
-      <Carousel />    
-      </div>
+    <Rutas />
   );
 }
 

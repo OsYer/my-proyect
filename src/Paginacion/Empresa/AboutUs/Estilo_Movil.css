@@ -1,0 +1,5 @@
+@media only screen and (max-width: 768px) {
+    .mobile-padding {
+      padding: 0 16px; /* Ajusta el valor de los márgenes según tu preferencia */
+    }
+}
