@@ -6,7 +6,7 @@ import AboutUs from '../Paginacion/Empresa/AboutUs/AboutUs';
 import Login from '../Paginacion/Login/Login';
 import ForgotPassword from '../Paginacion/Recuperacion/Recuperacion';
 import AuthenticationModal from '../Paginacion/Recuperacion/AuthenticationModal';
-
+import Registro from '../Paginacion/Registro/Registro'; 
 function Rutas() {
   return (
     <Routes>
@@ -16,6 +16,7 @@ function Rutas() {
           <Route  path="/Login" Component={Login} />
           <Route  path="/Recuperacion" Component={ForgotPassword} />
           <Route  path="/AuthenticationModal" Component={AuthenticationModal} />
+          <Route  path="/Registro" Component={Registro} />
 
           {/* <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} /> Nosotros*/}
