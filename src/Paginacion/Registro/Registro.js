@@ -41,11 +41,11 @@ const Registro = () => {
 
     const validatePassword = (value) => {
         const validations = [
-            { criteria: value.length >= 8, message: "La contraseña debe tener al menos 8 caracteres." },
-            { criteria: value.length <= 20, message: "La contraseña debe tener al máximo 20 caracteres." },
-            { criteria: /[A-Z]/.test(value), message: "La contraseña debe tener al menos una letra mayúscula." },
-            { criteria: /[a-z]/.test(value), message: "La contraseña debe tener al menos una letra minúscula." },
-            { criteria: /\d/.test(value), message: "La contraseña debe tener al menos un número." },
+            { criteria: value.length >= 8, message: "- La contraseña debe tener al menos 8 caracteres." },
+            { criteria: value.length <= 20, message: "- La contraseña debe tener al máximo 20 caracteres." },
+            { criteria: /[A-Z]/.test(value), message: "- La contraseña debe tener al menos una letra mayúscula." },
+            { criteria: /[a-z]/.test(value), message: "- La contraseña debe tener al menos una letra minúscula." },
+            { criteria: /\d/.test(value), message: "- La contraseña debe tener al menos un número." },
             { criteria: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value), message: "La contraseña debe tener al menos un carácter especial." }
         ];
 
@@ -89,7 +89,7 @@ const Registro = () => {
     const renderError = (error) => {
         return error ? <p className="text-red-500">{error}</p> : null;
     };
-
+    //Funcion que valida confirmar password dinamica
     const handleConfirmPasswordChange = (event) => {
         const { value } = event.target;
         if (value !== password) {
@@ -163,7 +163,7 @@ const Registro = () => {
                                             {showPassword ? <FaEyeSlash color="#4B5563" /> : <FaEye color="#4B5563" />}
                                         </button>
                                     </div>
-                                    <div>
+                                    <div className="bg-gray-200"> {/* Cambia "bg-red-100" al color de fondo que desees */}
                                         {validationResults.some(result => !result.criteria) ? (
                                             <div>
                                                 {validationResults.map((result, index) => (
@@ -187,7 +187,7 @@ const Registro = () => {
                                             className="bg-gray-50 border-none text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             required
                                             placeholder='************'
-                                            onChange={handleConfirmPasswordChange} 
+                                            onChange={handleConfirmPasswordChange}
                                         />
                                         <button
                                             type="button"

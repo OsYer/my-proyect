@@ -10,7 +10,7 @@ import ForgotPassword from '../Paginacion/Recuperacion/Recuperacion';
 import AuthenticationModal from '../Paginacion/Recuperacion/AuthenticationModal';
 
 import Registro from '../Paginacion/Registro/Registro'; 
-
+import Membresia from '../Paginacion/Membresia/Membresia';
 function Rutas() {
   return (
     <Routes>
@@ -22,6 +22,7 @@ function Rutas() {
           <Route  path="/AuthenticationModal" Component={AuthenticationModal} />
           <Route  path="/Registro" Component={Registro} />
           <Route  path="/Contacto" Component={Contacto} />
+          <Route  path="/Membresia" Component={Membresia} />
           
           {/* <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} /> Nosotros*/}
