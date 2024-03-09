@@ -24,7 +24,7 @@ function Navbar() {
     };
 
     return (
-        <div className="sticky top-0 z-50">
+        <div className="sticky top-0 z-50" style={{ backgroundColor: '#1B1716' }}>
             <nav className="bg-black border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 relative">
                     <div className="flex items-center space-x-3 rtl:space-x-reverse">
