@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+// Navbar.js
+
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // Nuevo estado para el inicio de sesión
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -22,9 +26,14 @@ function Navbar() {
     const closeDropdown = () => {
         setIsDropdownOpen(false);
     };
+    // Comprueba el estado de inicio de sesión al cargar el componente
+    useEffect(() => {
+        const loggedIn = localStorage.getItem('isLoggedIn');
+        setIsLoggedIn(loggedIn);
+    }, []);
 
     return (
-        <div className="sticky top-0 z-50" style={{ backgroundColor: '#1B1716' }}>
+        <div className={`sticky top-0 z-50 ${isMobileMenuOpen ? '' : 'mb-0'}`} style={{ backgroundColor: '#1B1716' }}>
             <nav className="bg-black border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 relative">
                     <div className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -90,6 +99,7 @@ function Navbar() {
                             <li>
                                 <a href="/Contacto" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contacto</a>
                             </li>
+                            {/*  adsadasdasdasdassdas*/}
                             <li>
                                 <a href="/Login" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Iniciar sesión</a>
                             </li>
@@ -133,9 +143,20 @@ function Navbar() {
                             <li>
                                 <a href="/Contacto" className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contacto</a>
                             </li>
-                            <li>
-                                <a href="/Login" className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Iniciar sesión</a>
-                            </li>
+                            <div className="hidden md:flex md:w-auto">
+                                <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-black md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-black dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                                    {/* Opciones de navegación */}
+                                    {isLoggedIn ? ( // Si el usuario está autenticado, muestra el enlace al perfil
+                                        <li>
+                                            <Link to="/Perfil" className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Perfil</Link>
+                                        </li>
+                                    ) : ( // Si el usuario no está autenticado, muestra la opción de inicio de sesión
+                                        <li>
+                                            <a href="/Login" className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Iniciar sesión</a>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
                         </ul>
                     </div>
                 </div>
