@@ -69,6 +69,7 @@ const MFA = () => {
       const id = dataUser.ID_usuario;
       const loginResponse = await fetch(`${baseURL}/users/${id}`);
       const loginData = await loginResponse.json();
+      
       if (!loginResponse.ok) {
         throw new Error(data.msg);
       }
