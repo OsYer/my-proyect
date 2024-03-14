@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
-
+import Breadcrumbs from './Breadcrumbs';
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -194,6 +194,7 @@ function Navbar() {
                     </ul>
                 </div>
             </nav>
+            <Breadcrumbs /> 
         </div>
     );
 }

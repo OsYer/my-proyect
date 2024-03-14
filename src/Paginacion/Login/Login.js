@@ -3,7 +3,7 @@ import Navbar from '../../Esquema/Navbar';
 import Footer from '../../Esquema/Footer';
 import { FaEye, FaEyeSlash, FaTimes } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-
+import {baseURL} from '../../api';
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
@@ -19,8 +19,10 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:4000/api/users/login', {
-                method: 'POST',
+            // const response = await fetch('http://localhost:4000/api/users/login', {
+                const response = await fetch(`${baseURL}/users/login`, {
+
+            method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
